@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <!-- Google Fonts Matching the Home Page -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,18 +51,38 @@
             /* purple-300 */
             font-weight: 600;
         }
+
+        /* Dark Mode Input Adjustments */
+        .dark .natural-input {
+            color: #e9d5ff;
+            /* purple-200 */
+            border-bottom-color: #a855f7;
+            /* purple-500 */
+        }
+
+        .dark .natural-input:focus {
+            background-color: rgba(168, 85, 247, 0.15);
+            border-bottom-color: #d8b4fe;
+            /* purple-300 */
+        }
+
+        .dark .natural-input::placeholder {
+            color: #64748b;
+            /* slate-500 */
+        }
     </style>
     <title>Contact | Utsav Raj</title>
 </head>
-<script>tailwind.config = { darkMode: 'class' }</script>
+
 <body class="bg-pink-50 dark:bg-slate-900 text-gray-800 dark:text-slate-200 min-h-screen antialiased">
 
     <!-- Navigation Bar -->
-    <nav class="bg-purple-900 px-6 py-4 text-white shadow-md sticky top-0 z-50">
+<nav class="bg-purple-900 px-6 py-4 text-white shadow-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
-        <div class="text-xl font-extrabold cursor-pointer">UR.</div>
-        
-        <!-- Desktop Nav -->
+        <!-- Logo -->
+        <div class="text-xl font-extrabold cursor-pointer"><a href="index.html" class="hover:text-purple-300">UR.</a></div>
+
+        <!-- Desktop Nav Links -->
         <ul id="nav-links" class="hidden sm:flex space-x-8 font-semibold text-sm">
             <li><a href="index.html" class="hover:text-purple-300">Home</a></li>
             <li><a href="about.html" class="hover:text-purple-300">About</a></li>
@@ -65,25 +90,51 @@
             <li><a href="contacts.html" class="hover:text-purple-300">Contact Me</a></li>
         </ul>
 
+        <!-- Right Side: Dark Mode & Mobile Menu -->
         <div class="flex items-center gap-4">
-            <button id="dark-mode-toggle" class="hover:text-purple-300">🌙</button>
-            <button id="mobile-menu-btn" class="sm:hidden text-2xl">☰</button>
+            
+            <!-- Dark Mode Toggle -->
+            <button id="dark-mode-toggle" class="hover:text-purple-300 transition-transform duration-300">
+                <!-- Sun Icon -->
+                <svg id="sun-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <!-- Star Icon -->
+                <svg id="star-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                </svg>
+            </button>
+
+            <!-- Hamburger Menu Button -->
+            <button id="mobile-menu-btn" class="sm:hidden text-white hover:text-purple-300 transition-colors duration-300 focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            
         </div>
     </div>
 </nav>
-
-<!-- Sidebar Overlay -->
-<div id="sidebar" class="fixed inset-0 bg-black bg-opacity-50 z-[100] hidden">
-    <div class="absolute right-0 top-0 h-full w-64 bg-purple-900 shadow-2xl p-8 flex flex-col space-y-6">
-        <button id="close-sidebar" class="text-white text-left text-2xl">✕</button>
-        <ul class="flex flex-col space-y-4 font-semibold text-white">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contacts.html">Contact Me</a></li>
-        </ul>
+    <!-- Sidebar Overlay -->
+    <div id="sidebar" class="fixed inset-0 bg-black bg-opacity-50 z-[100] hidden">
+        <div class="absolute right-0 top-0 h-full w-64 bg-purple-900 shadow-2xl p-8 flex flex-col space-y-6">
+            <button id="close-sidebar" class="text-white text-left text-2xl">✕</button>
+            <ul class="flex flex-col space-y-4 font-semibold text-white">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contacts.html">Contact Me</a></li>
+            </ul>
+        </div>
     </div>
-</div>
 
     <!-- Main Content -->
     <main class="flex-grow max-w-7xl mx-auto w-full px-6 py-16 md:py-24">
@@ -91,18 +142,21 @@
         <!-- Adjusted gap-16 to give more breathing room between left and right panels -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
-            <!-- Left Side: Slimmed down padding (p-6 md:p-8) -->
-            <div class="lg:col-span-7 bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-purple-100">
+            <!-- Left Side: Creative Dark Mode (Glassmorphism + Glow) -->
+            <div
+                class="lg:col-span-7 bg-white dark:bg-slate-800/40 dark:backdrop-blur-xl p-6 md:p-8 rounded-3xl shadow-sm dark:shadow-[0_0_30px_rgba(168,85,247,0.15)] border border-purple-100 dark:border-purple-500/20 transition-colors duration-300">
+
+                <!-- Tag -->
                 <div
-                    class="inline-block bg-purple-100 text-purple-800 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-6">
+                    class="inline-block bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-300 dark:border dark:border-purple-500/30 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-6 transition-colors duration-300">
                     Start a Conversation
                 </div>
 
                 <form action="#" method="POST" class="space-y-6">
 
-                    <!-- Significantly reduced font sizes: text-lg to text-2xl max -->
+                    <!-- Text Area updated with dark:text-slate-300 -->
                     <div
-                        class="text-lg md:text-xl lg:text-2xl leading-loose md:leading-loose lg:leading-loose text-gray-700 font-medium">
+                        class="text-lg md:text-xl lg:text-2xl leading-loose md:leading-loose lg:leading-loose text-gray-700 dark:text-slate-300 font-medium transition-colors duration-300">
                         Hi Utsav! My name is
                         <input type="text" name="name" class="natural-input text-base md:text-lg lg:text-xl"
                             placeholder="Your Name" required autocomplete="off">
@@ -114,16 +168,16 @@
                         <input type="email" name="email" class="natural-input text-base md:text-lg lg:text-xl"
                             placeholder="your@email.com" required autocomplete="off">.
                         <br><br>
-                        <span class="text-base md:text-lg text-gray-500">Additional details (optional):</span>
+                        <span class="text-base md:text-lg text-gray-500 dark:text-slate-400">Additional details
+                            (optional):</span>
                         <textarea name="message" rows="1"
                             class="natural-input text-base md:text-lg w-full mt-2 resize-none border-b-2"
                             placeholder="Any specific requirements..."></textarea>
                     </div>
 
                     <div class="pt-4">
-                        <!-- Smaller, sleeker button -->
                         <button type="submit"
-                            class="bg-purple-700 text-white font-bold px-6 py-3 rounded-xl shadow-md shadow-purple-200 hover:bg-purple-900 transform hover:-translate-y-1 transition duration-200 flex items-center gap-2">
+                            class="bg-purple-700 text-white font-bold px-6 py-3 rounded-xl shadow-md shadow-purple-200 dark:shadow-none hover:bg-purple-900 transform hover:-translate-y-1 transition duration-200 flex items-center gap-2">
                             Send Message
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <line x1="22" y1="2" x2="11" y2="13"></line>

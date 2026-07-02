@@ -13,21 +13,40 @@
     </style>
     <title>About | Utsav Raj</title>
 </head>
-<body class="bg-pink-50 min-h-screen text-gray-800 antialiased">
+<script>tailwind.config = { darkMode: 'class' }</script>
+<body class="bg-pink-50 dark:bg-slate-900 text-gray-800 dark:text-slate-200 min-h-screen antialiased">
 
-    <nav class="bg-purple-900 px-6 py-4 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="text-xl font-extrabold tracking-tight cursor-pointer hover:text-purple-300 transition">
-                UR.
-            </div>
-            <ul class="flex space-x-6 md:space-x-8 font-semibold text-sm md:text-base tracking-wide">
-                <li class="cursor-pointer hover:text-purple-300 transition-colors"><a href="index.html">Home</a></li>
-                <li class="cursor-pointer hover:text-purple-300 transition-colors"><a href="about.html">About</a></li>
-                <li class="cursor-pointer hover:text-purple-300 transition-colors"><a href="services.html">Services</a></li>
-                <li class="cursor-pointer text-purple-300 transition-colors"><a href="contacts.html">Contact Me</a></li>
-            </ul>
+<nav class="bg-purple-900 px-6 py-4 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="text-xl font-extrabold cursor-pointer">UR.</div>
+        
+        <!-- Desktop Nav -->
+        <ul id="nav-links" class="hidden sm:flex space-x-8 font-semibold text-sm">
+            <li><a href="index.html" class="hover:text-purple-300">Home</a></li>
+            <li><a href="about.html" class="hover:text-purple-300">About</a></li>
+            <li><a href="services.html" class="hover:text-purple-300">Services</a></li>
+            <li><a href="contacts.html" class="hover:text-purple-300">Contact Me</a></li>
+        </ul>
+
+        <div class="flex items-center gap-4">
+            <button id="dark-mode-toggle" class="hover:text-purple-300">🌙</button>
+            <button id="mobile-menu-btn" class="sm:hidden text-2xl">☰</button>
         </div>
-    </nav>
+    </div>
+</nav>
+
+<!-- Sidebar Overlay -->
+<div id="sidebar" class="fixed inset-0 bg-black bg-opacity-50 z-[100] hidden">
+    <div class="absolute right-0 top-0 h-full w-64 bg-purple-900 shadow-2xl p-8 flex flex-col space-y-6">
+        <button id="close-sidebar" class="text-white text-left text-2xl">✕</button>
+        <ul class="flex flex-col space-y-4 font-semibold text-white">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contacts.html">Contact Me</a></li>
+        </ul>
+    </div>
+</div>
 
     <main class="max-w-4xl mx-auto px-6 py-16 space-y-24">
 
@@ -139,9 +158,14 @@
         </section>
 
     </main>
+    <button id="scroll-top-btn"
+        class="fixed bottom-8 right-8 bg-purple-700 text-white p-3 rounded-full shadow-lg hidden hover:bg-purple-900 transition">
+        ↑
+    </button>
 
-    <footer class="py-6 text-center text-xs text-purple-900/40 bg-pink-50">
+    <footer class="py-6 text-center text-xs bg-pink-50 dark:bg-slate-900 text-gray-600">
         © 2026 Utsav Raj. All rights reserved.
     </footer>
+<script src="script.js"></script>
 </body>
 </html>
